@@ -14,20 +14,23 @@ class AlarmClock:
 
     # turn on/off the alarm
     def toggle_alarm(self, alarm_on):
-        if self.alarm_on == alarm_on:
-            self.user_decision_set_alarm_time = input(
-                "Alarm is on, would you like to set an alarm time, Eneter y/n: ").lower()
-            if self.user_decision_set_alarm_time == "y":
-                self.user_set_alarm_time = input(
-                    "Please eneter an alarm time: ")
-                self.set_alarm_time(self.user_set_alarm_time)
+        if alarm_on == True:
+            if self.alarm_time == "":
+                self.user_decision_set_alarm_time = input(
+                    "Alarm is on, would you like to set an alarm time, Eneter y/n: ").lower()
+                alarm_time = input("Enter it now: ")
+                self.set_alarm_time(alarm_time)
             else:
                 print("You alarm is on but no alarm time has set yet")
         else:
             print("You have turn off the alaram")
             self.alarm_on == alarm_on
+            self.alarm_time = ""
 
     # set the alarm time
     def set_alarm_time(self, alarm_time):
-        self.alarm_time = alarm_time
-        print(f'you have set the alarm time as {alarm_time}')
+        if self.alarm_on == True:
+            self.alarm_time = alarm_time
+            print(f'you have set the alarm time as {alarm_time}')
+        else:
+            print("you need to turn on the alarm")
